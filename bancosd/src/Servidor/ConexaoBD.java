@@ -41,4 +41,12 @@ public class ConexaoBD {
         }return conexao;
 
     }
+    
+    public void desconnect(){
+        try{
+            conexao.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
