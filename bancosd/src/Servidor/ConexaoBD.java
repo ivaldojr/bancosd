@@ -17,36 +17,19 @@ import java.util.logging.Logger;
  */
 public class ConexaoBD {
 
-    public static void main(String args[]) {
-        new ConexaoBD();
-    }
-
-    public ConexaoBD() {
-        try {
-            connect();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConexaoBD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    Connection conexao;
-
-    public Connection connect() throws ClassNotFoundException {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conexao = DriverManager.getConnection("jdbc:mysql://localhost/sd", "root", "");
-        } catch (SQLException ex) {
-            Logger.getLogger(ConexaoBD.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Conexão perdida!");
-        }return conexao;
-
-    }
-    
-    public void desconnect(){
+    public static Connection ConexaoObter(){
+        
+        Connection conexao = null;
+         
         try{
-            conexao.close();
+           Class.forName("com.mysql.jdbc.Driver");
+           
+           conexao = DriverManager.getConnection("jdbc:mysql://localhost/sd", "root", "");
+        }catch(ClassNotFoundException e){
+            e.printStackTrace();
         }catch(SQLException e){
             e.printStackTrace();
         }
+         return conexao;
     }
 }
